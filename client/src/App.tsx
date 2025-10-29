@@ -28,7 +28,7 @@ function Router() {
         <Route path="/terms" component={Terms} />
         <Route component={NotFound} />
       </Switch>
-      <footer className="border-t border-border bg-black">
+      <footer className="border-t border-sidebar-border bg-sidebar">
         <div className="container mx-auto max-w-7xl px-4 py-12">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div>
