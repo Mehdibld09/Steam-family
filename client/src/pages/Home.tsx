@@ -63,7 +63,10 @@ export default function Home() {
               className="gap-2"
               asChild
             >
-              <a href="#tools" data-testid="button-explore">
+              <a href="#tools" onClick={(e) => {
+                e.preventDefault();
+                document.getElementById('tools')?.scrollIntoView({ behavior: 'smooth' });
+              }} data-testid="button-explore">
                 <Download className="h-5 w-5" />
                 Explore Tools
               </a>
@@ -74,9 +77,9 @@ export default function Home() {
               className="gap-2"
               asChild
             >
-              <a href="#community" data-testid="button-community">
+              <Link href="/register" data-testid="button-community">
                 Join Community
-              </a>
+              </Link>
             </Button>
           </div>
         </div>

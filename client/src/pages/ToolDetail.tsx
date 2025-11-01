@@ -16,6 +16,8 @@ import { useAuth } from '@/hooks/use-auth';
 import { useToast } from '@/hooks/use-toast';
 import { ImageCarousel } from '@/components/ImageCarousel';
 
+import { usePageTitle } from "@/hooks/use-page-title";
+
 export default function ToolDetail() {
   const { slug } = useParams();
   const { user } = useAuth();
@@ -23,6 +25,7 @@ export default function ToolDetail() {
   const [showDownloadModal, setShowDownloadModal] = useState(false);
   const [downloadType, setDownloadType] = useState<'primary' | 'mirror'>('primary');
 
+  // Set page title when tool data is available
   const { data: tool, isLoading } = useQuery<Tool>({
     queryKey: ['/api/tools', slug],
     queryFn: async () => {
@@ -56,6 +59,9 @@ export default function ToolDetail() {
     },
     enabled: !!tool?.id,
   });
+
+  // Update page title when tool data changes
+  usePageTitle(tool ? `${tool.title} - Steam Family` : undefined);
 
   // Implement real-time review updates using Supabase subscriptions
   useEffect(() => {

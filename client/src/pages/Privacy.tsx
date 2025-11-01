@@ -14,27 +14,27 @@ export default function Privacy() {
           </Button>
         </Link>
 
-        <Card>
+        <Card className="bg-white">
           <CardHeader>
-            <CardTitle className="text-3xl">Privacy Policy</CardTitle>
+            <CardTitle className="text-3xl text-neutral-900">Privacy Policy</CardTitle>
           </CardHeader>
-          <CardContent className="prose prose-invert max-w-none space-y-6">
-            <p className="text-muted-foreground">Last updated: {new Date().toLocaleDateString()}</p>
+          <CardContent className="prose max-w-none space-y-6 text-neutral-900">
+            <p className="text-neutral-900">Last updated: {new Date().toLocaleDateString()}</p>
 
             <section>
-              <h2 className="text-2xl font-semibold mb-3">Introduction</h2>
-              <p className="text-muted-foreground leading-relaxed">
+              <h2 className="text-2xl font-semibold mb-3 text-neutral-900">Introduction</h2>
+              <p className="leading-relaxed text-neutral-900">
                 Welcome to SteamFamily. We respect your privacy and are committed to protecting your personal data. 
                 This privacy policy explains how we collect, use, and safeguard your information when you use our platform.
               </p>
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold mb-3">Information We Collect</h2>
-              <p className="text-muted-foreground leading-relaxed mb-3">
+              <h2 className="text-2xl font-semibold mb-3 text-neutral-900">Information We Collect</h2>
+              <p className="leading-relaxed mb-3 text-neutral-900">
                 We collect the following types of information:
               </p>
-              <ul className="list-disc pl-6 space-y-2 text-muted-foreground">
+              <ul className="list-disc pl-6 space-y-2 text-neutral-900">
                 <li>Account information (email, display name)</li>
                 <li>Reviews and ratings you submit</li>
                 <li>Download activity and usage statistics</li>
@@ -43,11 +43,11 @@ export default function Privacy() {
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold mb-3">How We Use Your Information</h2>
-              <p className="text-muted-foreground leading-relaxed mb-3">
+              <h2 className="text-2xl font-semibold mb-3 text-neutral-900">How We Use Your Information</h2>
+              <p className="leading-relaxed mb-3 text-neutral-900">
                 We use your information to:
               </p>
-              <ul className="list-disc pl-6 space-y-2 text-muted-foreground">
+              <ul className="list-disc pl-6 space-y-2 text-neutral-900">
                 <li>Provide and maintain our services</li>
                 <li>Process your reviews and display them publicly</li>
                 <li>Track download statistics</li>
@@ -57,24 +57,24 @@ export default function Privacy() {
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold mb-3">Data Sharing</h2>
-              <p className="text-muted-foreground leading-relaxed">
+              <h2 className="text-2xl font-semibold mb-3 text-neutral-900">Data Sharing</h2>
+              <p className="leading-relaxed text-neutral-900">
                 We do not sell your personal data to third parties. Your reviews and display name are publicly visible. 
                 We may share anonymized usage statistics for analytics purposes.
               </p>
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold mb-3">Your Rights</h2>
-              <p className="text-muted-foreground leading-relaxed">
+              <h2 className="text-2xl font-semibold mb-3 text-neutral-900">Your Rights</h2>
+              <p className="leading-relaxed text-neutral-900">
                 You have the right to access, update, or delete your personal information. You can manage your account 
                 settings or contact us for assistance with data requests.
               </p>
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold mb-3">Contact Us</h2>
-              <p className="text-muted-foreground leading-relaxed">
+              <h2 className="text-2xl font-semibold mb-3 text-neutral-900">Contact Us</h2>
+              <p className="leading-relaxed text-neutral-900">
                 If you have questions about this privacy policy, please contact us through our community channels.
               </p>
             </section>

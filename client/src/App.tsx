@@ -1,5 +1,7 @@
-import { Switch, Route } from "wouter";
+import { Switch, Route, Link, Router, useLocation } from "wouter";
 import { queryClient } from "./lib/queryClient";
+import { useHashLocation } from "./lib/useHashLocation";
+import { useState, useEffect } from "react";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -14,7 +16,31 @@ import Privacy from "@/pages/Privacy";
 import Terms from "@/pages/Terms";
 import NotFound from "@/pages/not-found";
 
-function Router() {
+import { usePageTitle } from "@/hooks/use-page-title";
+
+const RouterContent = () => {
+  usePageTitle();
+  const [location] = useLocation();
+
+  // Scroll to top on route change so navigation always starts at the top
+  useEffect(() => {
+    // Run after paint to ensure new route content is rendered first
+    try {
+      requestAnimationFrame(() => {
+        try {
+          window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+        } catch (e) {
+          window.scrollTo(0, 0);
+        }
+        // additional fallbacks for some browsers/containers
+        try { document.documentElement.scrollTop = 0; } catch (e) {}
+        try { document.body.scrollTop = 0; } catch (e) {}
+      });
+    } catch (e) {
+      try { window.scrollTo(0, 0); } catch (e) {}
+    }
+  }, [location]);
+
   return (
     <>
       <Header />
@@ -41,19 +67,19 @@ function Router() {
               <h3 className="font-semibold mb-3">Links</h3>
               <ul className="space-y-2 text-sm text-muted-foreground">
                 <li>
-                  <a href="/" className="hover:text-foreground transition-colors" data-testid="link-footer-home">
+                  <Link href="/" className="hover:text-foreground transition-colors" data-testid="link-footer-home">
                     Home
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="/privacy" className="hover:text-foreground transition-colors" data-testid="link-footer-privacy">
+                  <Link href="/privacy" className="hover:text-foreground transition-colors" data-testid="link-footer-privacy">
                     Privacy Policy
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="/terms" className="hover:text-foreground transition-colors" data-testid="link-footer-terms">
+                  <Link href="/terms" className="hover:text-foreground transition-colors" data-testid="link-footer-terms">
                     Terms of Service
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -73,13 +99,15 @@ function Router() {
   );
 }
 
-function App() {
+const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
         <AuthProvider>
-          <Toaster />
-          <Router />
+          <Router hook={useHashLocation}>
+            <Toaster />
+            <RouterContent />
+          </Router>
         </AuthProvider>
       </TooltipProvider>
     </QueryClientProvider>

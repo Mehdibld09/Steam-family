@@ -18,7 +18,7 @@ export function Header() {
         <nav className="flex items-center gap-2">
           {user ? (
             <>
-              {profile?.is_admin && (
+                {profile?.is_admin && (
                 <Link href="/admin">
                   <Button 
                     variant="ghost" 
