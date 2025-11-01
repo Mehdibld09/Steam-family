@@ -9,6 +9,7 @@ import { Separator } from '@/components/ui/separator';
 import { Download, ExternalLink, Star, MessageSquare, ChevronLeft, Loader2 } from 'lucide-react';
 import type { Tool, ReviewWithUser } from '@shared/schema';
 import { useState, useEffect } from 'react';
+import { usePageTitle } from '@/hooks/use-page-title';
 import { DownloadModal } from '@/components/DownloadModal';
 import { ReviewForm } from '@/components/ReviewForm';
 import { ReviewList } from '@/components/ReviewList';
@@ -16,7 +17,7 @@ import { useAuth } from '@/hooks/use-auth';
 import { useToast } from '@/hooks/use-toast';
 import { ImageCarousel } from '@/components/ImageCarousel';
 
-import { usePageTitle } from "@/hooks/use-page-title";
+// usePageTitle is already imported above
 
 export default function ToolDetail() {
   const { slug } = useParams();
@@ -136,6 +137,11 @@ export default function ToolDetail() {
   const averageRating = reviews.length > 0
     ? reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length
     : 0;
+
+  // Ensure we scroll to top when opening a tool detail
+  useEffect(() => {
+    try { window.scrollTo({ top: 0, left: 0, behavior: 'auto' }); } catch (e) { window.scrollTo(0, 0); }
+  }, [tool?.id]);
 
   if (isLoading) {
     return (
