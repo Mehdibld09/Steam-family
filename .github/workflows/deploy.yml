@@ -36,7 +36,8 @@ jobs:
         uses: actions/configure-pages@v3
 
       - name: Upload Pages Artifact
-        uses: actions/upload-pages-artifact@v1
+        # v2 uses the non-deprecated upload-artifact v4 under the hood
+        uses: actions/upload-pages-artifact@v2
         with:
           path: ./dist/public
 
