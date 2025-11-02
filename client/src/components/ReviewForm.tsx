@@ -50,18 +50,25 @@ export function ReviewForm({ toolId }: ReviewFormProps) {
       setBody('');
       queryClient.invalidateQueries({ queryKey: ['/api/reviews', toolId] });
     },
-    onError: (error: Error) => {
+    onError: (error: unknown) => {
+      const message = (error as any)?.message ?? String(error ?? 'An unknown error occurred');
       toast({
         title: 'Error',
-        description: error.message,
+        description: message,
         variant: 'destructive',
       });
     },
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    createReviewMutation.mutate();
+    try {
+      // Use mutateAsync so we can catch errors and avoid unhandled promise rejections
+      await createReviewMutation.mutateAsync();
+    } catch (err) {
+      const message = (err as any)?.message ?? String(err ?? 'An unknown error occurred');
+      toast({ title: 'Error', description: message, variant: 'destructive' });
+    }
   };
 
   return (
